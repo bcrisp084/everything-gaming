@@ -5,6 +5,7 @@ const typeDefs = gql`
     _id: ID
     firstName: String
     lastName: String
+    username: String
     favorites: [Game!]
   }
 
@@ -29,10 +30,12 @@ const typeDefs = gql`
   }
 
   type Query {
-    me: User
     users: [User]
     user(username: String!): User
     games: [Game]
     game(_id: ID!): Game
+    me: User
   }
 `;
+
+module.exports = typeDefs;
