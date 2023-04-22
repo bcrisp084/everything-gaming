@@ -11,6 +11,10 @@ const gameSchema = new Schema({
     type: String,
     required: true,
   },
+  likes: {
+    type: Number,
+    default: 0,
+  },
   comments: [
     {
       text: String,
@@ -31,3 +35,7 @@ const gameSchema = new Schema({
     },
   ],
 });
+
+const Game = mongoose.model("Game", gameSchema);
+
+module.exports = Game;

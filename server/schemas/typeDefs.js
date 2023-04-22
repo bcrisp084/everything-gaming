@@ -6,6 +6,8 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     username: String
+    email: String
+    password: String
     favorites: [Game!]
   }
 
@@ -13,6 +15,7 @@ const typeDefs = gql`
     _id: ID
     title: String
     description: String
+    likes: Int
     comments: [Comment]!
   }
 
@@ -20,8 +23,7 @@ const typeDefs = gql`
     _id: ID
     text: String
     createdAt: String
-    likes: [User]!
-    user: User
+    user: [User]
   }
 
   type Auth {
@@ -35,6 +37,17 @@ const typeDefs = gql`
     games: [Game]
     game(_id: ID!): Game
     me: User
+  }
+
+  type Mutation {
+    addUser(
+      firsName: String!
+      lastName: String!
+      username: String!
+      email: String!
+      password: String!
+    ): Auth
+    login(email: String!, password: String!): Auth
   }
 `;
 
