@@ -5,9 +5,8 @@ const typeDefs = gql`
     _id: ID
     firstName: String
     lastName: String
-    username: String
+    userName: String
     email: String
-    password: String
     favorites: [Game!]
   }
 
@@ -33,7 +32,7 @@ const typeDefs = gql`
 
   type Query {
     users: [User]
-    user(username: String!): User
+    user(userName: String!): User
     games: [Game]
     game(_id: ID!): Game
     me: User
@@ -41,9 +40,9 @@ const typeDefs = gql`
 
   type Mutation {
     addUser(
-      firsName: String!
+      firstName: String!
       lastName: String!
-      username: String!
+      userName: String!
       email: String!
       password: String!
     ): Auth

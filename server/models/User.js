@@ -7,12 +7,14 @@ const userSchema = new Schema({
   firstName: {
     type: String,
     required: true,
-    trim: true,
   },
   lastName: {
     type: String,
     required: true,
-    trim: true,
+  },
+  userName: {
+    type: String,
+    required: true,
   },
   email: {
     type: String,
@@ -24,12 +26,12 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  favorites: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Game",
-    },
-  ],
+  // favorites: [
+  //   {
+  //     type: Schema.Types.ObjectId,
+  //     ref: "Game",
+  //   },
+  // ],
 });
 
 userSchema.pre("save", async function (next) {
