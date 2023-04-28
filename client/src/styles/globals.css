@@ -54,3 +54,42 @@ body {
   min-height: 50%;
   opacity: 0.7;
 }
+
+.side-link {
+  text-decoration: none;
+  color: #cba0f9;
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding: 0.5rem;
+  transition: 0.5s;
+}
+
+.side-link:hover {
+  color: #6602c3;
+}
+
+.brand-name {
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: #f2e7fe;
+  padding: 0.5rem;
+  transition: 0.5s;
+}
+
+@media screen and (max-width: 768px) {
+  .side-link {
+    font-size: 1rem;
+  }
+  .brand-name {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .side-link {
+    font-size: 0.8rem;
+  }
+  .brand-name {
+    font-size: 1.2rem;
+  }
+}
