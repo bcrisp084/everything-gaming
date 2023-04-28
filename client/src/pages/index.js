@@ -4,7 +4,7 @@ import Image from "next/image";
 const IndexPage = () => (
   <main className="md:container md:mx-auto">
     <div className="container h-screen">
-      <nav className="bg-blue-950 shadow opacity-90 rounded">
+      <nav className="bg-black-950 shadow opacity-90 rounded">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex-shrink-0 flex items-center">
