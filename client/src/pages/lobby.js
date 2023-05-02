@@ -5,12 +5,16 @@ import { useState, useEffect, useRef } from "react";
 import { GameCard } from "@/comps/Card";
 // import { useInView } from "react-intersection-observer";
 import Sidebar from "@/comps/Sidebar";
+import "intersection-observer";
+
 
 function Lobby() {
   const [games, setGames] = useState([]);
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const observer = useRef();
+  // const [loading, setLoading] = useState(false);
+  // const observer = useRef();
+
+  
 
   useEffect(() => {
     gameData
@@ -21,6 +25,21 @@ function Lobby() {
       })
       .catch((err) => console.log(err));
   }, [page]);
+
+  // useEffect(() => {
+  //   if (games.length > 0) {
+  //     observer.current = new IntersectionObserver((entries) => {
+  //       const lastEntry = entries[entries.length - 1];
+  //       if (lastEntry.isIntersecting) {
+  //         setPage((prevPage) => prevPage + 1);
+  //       }
+  //     });
+  //     if (observer.current) {
+  //       observer.current.observe(document.querySelector(".game:last-child"));
+  //     }
+  //   }
+  // }, [games]);
+  
 
   // useEffect(() => {
   //   observer.current = new IntersectionObserver((entries) => {
