@@ -1,5 +1,7 @@
 "use client";
+import logo from "../assets/logo.png";
 import { Navbar, Link, Text, Avatar, Dropdown, Input } from "@nextui-org/react";
+import Image from "next/image";
 import { SearchIcon } from "./SearchIcon";
 export default function Nav() {
   const collapseItems = [
@@ -26,9 +28,7 @@ export default function Nav() {
         }}
       >
         {/* this is for the logo          */}
-        <Text b color="inherit" hideIn="xs">
-          ACME
-        </Text>
+        {/* <Image src={logo} alt="logo" className="logo" /> */}
       </Navbar.Brand>
       <Navbar.Content
         enableCursorHighlight
