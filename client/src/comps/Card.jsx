@@ -2,7 +2,7 @@ import { Card, Col, Row, Button, Text } from "@nextui-org/react";
 
 export const GameCard = ({ name, src, released }) => (
   <Card className="game" isPressable css={{ w: "100%", h: "400px" }}>
-    <Card.Header isBlurred css={{ position: "absolute", zIndex: 1, top: 5 }}>
+    <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
       <Col>
         {/* <Text size={12} weight="bold" transform="uppercase" color="#ffffffAA">
             New

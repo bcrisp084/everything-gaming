@@ -3,8 +3,8 @@ import gameData from "@/utils/games";
 import { Grid, Container } from "@nextui-org/react";
 import { useState, useEffect, useRef } from "react";
 import { GameCard } from "@/comps/Card";
-// import { useInView } from "react-intersection-observer";
 import Sidebar from "@/comps/Sidebar";
+import Link from "next/link";
 import "intersection-observer";
 
 function Lobby() {
@@ -51,13 +51,14 @@ function Lobby() {
   return (
     <Container>
        <Nav />
-//       <div className="h-full w-150 fixed z-1 top-0 left-0  overflow-x-hidden pt-20 bg-black">
-//         <Sidebar />
-//       </div>
-//       <div className="ml-[150px]">      
+       <div className="h-full w-150 fixed z-1 top-0 left-0  overflow-x-hidden pt-20 bg-black">
+         <Sidebar />
+       </div>
+     <div className="ml-[150px]">      
       <Grid.Container gap={2} justify="center">
         {games.map((game, index) => (
           <Grid xs={12} md={6} lg={4} key={game.id}>
+            <Link href={`/${game.id}`}>
             <GameCard
               shadow="true"
               hoverable="true"
@@ -66,6 +67,7 @@ function Lobby() {
               name={game.name}
               released={game.released}
             />
+            </Link>
             {games.length === index + 1 && (
               <div ref={lastGameRef} className="game">
                 {/* this element will be observed by the IntersectionObserver */}
