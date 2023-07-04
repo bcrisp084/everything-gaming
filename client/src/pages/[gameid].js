@@ -2,11 +2,14 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import singleGameData from "@/utils/games";
+import gameTrailersData from "@/utils/games";
 
 export default function () {
   const router = useRouter();
   const { gameid } = router.query;
+  const gameId = parseInt(gameid);
   const [game, setGame] = useState([]);
+  const [trailer, setTrailer] = useState([]);
 
   useEffect(() => {
     singleGameData
@@ -18,11 +21,22 @@ export default function () {
       .catch((err) => console.log(err));
   }, [gameid]);
 
-  console.log(gameid);
+  useEffect(() => {
+    gameTrailersData
+      .gameTrailers(gameId)
+      .then((res) => {
+        console.log("res", res.data);
+        setTrailer(res.data.results[0].data.max);
+      })
+
+      .catch((err) => console.log(err));
+  }, [gameid]);
+
   return (
     <div>
       <div className="-z-1 top-0 left-0 opacity-30 w-full h-screen object-cover absolute">
         <Image
+          priority
           src={game.background_image_additional}
           alt="game background image"
           width={500}
@@ -44,6 +58,11 @@ export default function () {
         </div>
         <div className="card-description">
           <p className="text-white">{game.description_raw}</p>
+        </div>
+        <div>
+          <video width="500" height="500" controls>
+            <source src={trailer} type="video/mp4" />
+          </video>
         </div>
         <div className="flex flex-col items-center justify-center">
           <h1 className="text-2xl font-bold text-white">Rating</h1>
