@@ -7,24 +7,26 @@ const db = require("./config/connection");
 const { authMiddleware } = require("./utils/authorize");
 const { typeDefs, resolvers } = require("./schemas");
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-
 const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: authMiddleware,
 });
 
-app.use(express.static(path.join(__dirname, "../client/build")));
+const startApolloServer = async () => {
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
-});
-
-const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
   server.applyMiddleware({ app });
+
+  if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "../client/dist")));
+
+    app.get("*", (req, res) => {
+      res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+    });
+  }
 
   db.once("open", () => {
     app.listen(PORT, () => {
@@ -37,4 +39,4 @@ const startApolloServer = async (typeDefs, resolvers) => {
 };
 
 // Call the async function to start the server
-startApolloServer(typeDefs, resolvers);
+startApolloServer();
